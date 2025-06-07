@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Arththiya ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 🌸 MAIN STYLES */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #333;
+            transition: background 1s ease;
+        }
+
+        /* ❤️ HEART ANIMATION */
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* 🔐 LOGIN SCREEN */
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            z-index: 10;
+            animation: fadeIn 1s ease;
+            border: 2px solid #ff6b81;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .login-container h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #e84393;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .login-container p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .login-container input {
+            width: 80%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #f8a5c2;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .login-container input:focus {
+            border-color: #e84393;
+            box-shadow: 0 0 10px rgba(232, 67, 147, 0.3);
+        }
+
+        .login-container button {
+            background: linear-gradient(45deg, #e84393, #fd79a8);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+        }
+
+        .login-container button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 67, 147, 0.6);
+        }
+
+        .login-container button:active {
+            transform: translateY(1px);
+        }
+
+        .error-message {
+            color: #e84393;
+            margin-top: 15px;
+            height: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 🖼️ SLIDES */
+        .slides-container {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            transform: scale(0.95);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #e84393;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .slide p {
+            font-size: 1.2rem;
+            max-width: 80%;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .slide img {
+            max-width: 80%;
+            max-height: 50vh;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            object-fit: contain;
+            transition: all 0.5s ease;
+            border: 5px solid white;
+        }
+
+        .slide img:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* 🎵 MUSIC PLAYER */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: linear-gradient(45deg, #e84393, #fd79a8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ✨ FINAL SLIDE */
+        .final-message {
+            font-size: 3.5rem;
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, #e84393, #fd79a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite, rainbow 8s infinite;
+            text-shadow: 0 2px 10px rgba(232, 67, 147, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .final-slide p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .birthday-cake {
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ❤️ CURSOR HEARTS */
+        .cursor-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e84393"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        /* 🎉 CONFETTI */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ❤️ CURSOR HEARTS -->
+    <div id="cursorHeart" class="cursor-heart"></div>
+
+    <!-- 🔐 PASSWORD SCREEN -->
+    <div class="login-container" id="loginContainer">
+        <h1>For My Dearest Arththiya ❤️</h1>
+        <p>Enter the date that changed my life forever</p>
+        <input type="password" id="passwordInput" placeholder="Our special code">
+        <button onclick="checkPassword()">Unlock My Heart</button>
+        <p class="error-message" id="errorMessage"></p>
+    </div>
+
+    <!-- 🎞️ SLIDES CONTAINER -->
+    <div class="slides-container" id="slidesContainer">
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="https://i.ibb.co/tpP8FD18/your-image1.jpg" alt="Our Memory" id="slide1Image">
+            <h2>My Beautiful Arththiya</h2>
+            <p>From the moment our eyes met, my heart knew it had found its home</p>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="https://i.ibb.co/NdBnXXGM/your-image2.jpg" alt="Your Smile" id="slide2Image">
+            <h2>Your Radiant Smile</h2>
+            <p>Like sunshine breaking through clouds, your smile lights up my world</p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="https://i.ibb.co/DD1TLV79/your-image3.jpg" alt="Together" id="slide3Image">
+            <h2>Our Beautiful Journey</h2>
+            <p>Every moment with you is a precious gift I'll treasure forever</p>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="https://i.ibb.co/0VqWRWd7/your-image4.jpg" alt="Love" id="slide4Image">
+            <h2>My Eternal Promise</h2>
+            <p>To stand by your side, to cherish you, and to love you more each day</p>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <img src="https://i.ibb.co/sp7spXjn/your-image5.jpg" alt="Celebration" id="slide5Image">
+            <h2>Today We Celebrate</h2>
+            <p>The incredible woman who makes my life complete</p>
+        </div>
+
+        <!-- Slide 6 (Finale) -->
+        <div class="slide final-slide">
+            <div class="final-message">Happy Birthday Arththiya!</div>
+            <p>May your day be as magical as the love you've brought into my life</p>
+            <div class="birthday-cake">🎂</div>
+        </div>
+
+        <!-- 🎵 MUSIC PLAYER -->
+        <div class="music-control" id="musicToggle">🎵</div>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // 🔐 PASSWORD CHECK
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password === '1331') {
+                // Create hearts animation on success
+                createHearts(20);
+                
+                // Add transition effect
+                document.getElementById('loginContainer').style.opacity = '0';
+                document.getElementById('loginContainer').style.transform = 'translate(-50%, -60%)';
+                
+                setTimeout(() => {
+                    document.getElementById('loginContainer').style.display = 'none';
+                    document.getElementById('slidesContainer').style.display = 'block';
+                    startSlideshow();
+                    initMusic();
+                    
+                    // Change background gradient
+                    document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+                    
+                    // Create initial hearts
+                    createFloatingHearts();
+                }, 500);
+            } else {
+                errorMessage.textContent = 'Try again my love ❤️';
+                // Shake animation for wrong password
+                document.getElementById('loginContainer').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById('loginContainer').style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Add shake animation dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translate(-50%, -50%); }
+                20%, 60% { transform: translate(-53%, -50%); }
+                40%, 80% { transform: translate(-47%, -50%); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 🎞️ SLIDESHOW
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function startSlideshow() {
+            slides[0].classList.add('active');
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+                
+                // Change background gradient with each slide
+                const colors = [
+                    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)',
+                    'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)',
+                    'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+                    'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
+                    'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+                ];
+                document.body.style.background = colors[currentSlide % colors.length];
+                
+                // Create hearts on slide change
+                if (currentSlide === slides.length - 1) {
+                    createConfetti(100);
+                } else {
+                    createHearts(10);
+                }
+            }, 6000);
+        }
+
+        // 🎵 MUSIC CONTROL
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        
+        function initMusic() {
+            bgMusic.volume = 0.3;
+            // Auto-play with user interaction
+            document.body.addEventListener('click', () => {
+                bgMusic.play().then(() => {
+                    musicToggle.textContent = '🔊';
+                }).catch(e => console.log("Playback requires user interaction"));
+            }, { once: true });
+        }
+
+        musicToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicToggle.textContent = '🔊';
+            } else {
+                bgMusic.pause();
+                musicToggle.textContent = '🎵';
+            }
+        });
+
+        // ❤️ CREATE HEARTS ANIMATION
+        function createHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, i * 300);
+            }
+        }
+
+        // ❤️ FLOATING HEARTS IN BACKGROUND
+        function createFloatingHearts() {
+            setInterval(() => {
+                createHearts(3);
+            }, 2000);
+        }
+
+        // 🎉 CONFETTI EFFECT
+        function createConfetti(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+
+        // ❤️ CURSOR HEARTS
+        const cursorHeart = document.getElementById('cursorHeart');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorHeart.style.left = e.clientX + 'px';
+            cursorHeart.style.top = e.clientY + 'px';
+            cursorHeart.style.opacity = '1';
+            
+            setTimeout(() => {
+                cursorHeart.style.opacity = '0';
+            }, 1000);
+        });
+
+        // Create initial floating hearts
+        function createInitialHearts() {
+            createHearts(15);
+        }
+
+        // Run initial animations
+        window.onload = createInitialHearts;
+    </script>
+</body>
+</html>
